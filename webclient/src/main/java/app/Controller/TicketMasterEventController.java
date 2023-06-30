@@ -21,6 +21,8 @@ public class TicketMasterEventController {
         List<TicketMasterEvent> events = eventService.getEvents();
         for(TicketMasterEvent event : events){
             System.out.println("Event Name: " + event.getName());
+            System.out.println("Event URL: " + event.getUrl());
+            System.out.println("Image URL: " + event.getImages().get(0).getUrl());
             if(event.getDates() != null) {
                 if(event.getDates().getStart() != null) {
                     System.out.println("Start Date: " + event.getDates().getStart().getDateTime());

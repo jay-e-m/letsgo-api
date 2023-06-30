@@ -17,14 +17,24 @@ public class TicketMasterEventService {
         this.restTemplate = restTemplate;
     }
 
+
     public List<TicketMasterEvent> getEvents() {
         String url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=ihrEJGVbWZWb4UeA6lbZ6Ax3ELRkkyGV&size=100";
         TicketMasterEventResponse eventResponse = restTemplate.getForObject(url, TicketMasterEventResponse.class);
         if (eventResponse != null && eventResponse.get_embedded() != null) {
-            return eventResponse.get_embedded().getEvents();
+            List<TicketMasterEvent> events = eventResponse.get_embedded().getEvents();
+            for (TicketMasterEvent event : events) {
+                List<TicketMasterEvent.Image> images = event.getImages();
+                images.removeIf(image ->
+                        !"16_9".equals(image.getRatio()) ||
+                                image.getWidth() != 1024 ||
+                                image.getHeight() != 576);
+            }
+            return events;
         } else {
             return Collections.emptyList();
         }
     }
+
 
 }

@@ -1,11 +1,14 @@
 package app.Service.SeatGeek.Models;
 
 import java.util.List;
+import java.util.Map;
 
 public class SeatGeekEvent {
     private String title;
     private String datetime_local;
     private Venue venue;
+    private String url;
+    private List<Performer> performers;
 
     public String getTitle() {
         return title;
@@ -29,6 +32,22 @@ public class SeatGeekEvent {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<Performer> getPerformers() {
+        return performers;
+    }
+
+    public void setPerformers(List<Performer> performers) {
+        this.performers = performers;
     }
 
     public static class Venue {
@@ -67,6 +86,27 @@ public class SeatGeekEvent {
 
         public void setPostal_code(String postal_code) {
             this.postal_code = postal_code;
+        }
+    }
+
+    public static class Performer {
+        private String name;
+        private Map<String, String> images;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Map<String, String> getImages() {
+            return images;
+        }
+
+        public void setImages(Map<String, String> images) {
+            this.images = images;
         }
     }
 }

@@ -6,6 +6,9 @@ public class TicketMasterEvent {
     private String name;
     private Dates dates;
     private Embedded _embedded;
+    private String url;
+    private List<Image> images;
+
 
     public String getName() {
         return name;
@@ -31,6 +34,24 @@ public class TicketMasterEvent {
         this._embedded = _embedded;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+
+
     public static class Dates {
         private Start start;
         private End end;
@@ -50,6 +71,8 @@ public class TicketMasterEvent {
         public void setEnd(End end) {
             this.end = end;
         }
+
+
 
         public static class Start {
             private String dateTime;
@@ -151,4 +174,51 @@ public class TicketMasterEvent {
         }
     }
 
+    public static class Image {
+        private String ratio;
+        private String url;
+        private int width;
+        private int height;
+        private boolean fallback;
+
+        public String getRatio() {
+            return ratio;
+        }
+
+        public void setRatio(String ratio) {
+            this.ratio = ratio;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public void setWidth(int width) {
+            this.width = width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
+        }
+
+        public boolean isFallback() {
+            return fallback;
+        }
+
+        public void setFallback(boolean fallback) {
+            this.fallback = fallback;
+        }
+    }
 }

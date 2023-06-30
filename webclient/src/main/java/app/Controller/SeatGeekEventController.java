@@ -21,6 +21,8 @@ public class SeatGeekEventController {
         List<SeatGeekEvent> events = eventService.getEvents();
         for(SeatGeekEvent event : events){
             System.out.println("Event Name: " + event.getTitle());
+            System.out.println("Event URL: " + event.getUrl());
+            System.out.println("Event Image: " + event.getPerformers().get(0).getImages().get("huge")); // change this line
             if(event.getDatetime_local() != null) {
                 System.out.println("Event Time: " + event.getDatetime_local());
             }
