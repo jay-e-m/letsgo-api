@@ -17,8 +17,13 @@ public class SeatGeekEventService {
         this.restTemplate = restTemplate;
     }
 
-    public List<SeatGeekEvent> getEvents() {
+    public List<SeatGeekEvent> getEvents(String postalCode) {
         String url = "https://api.seatgeek.com/2/events?client_id=MzQ1MzMwMTh8MTY4Nzc4OTY3Mi43MjYzODg1";
+
+        if (postalCode != null && !postalCode.isEmpty()) {
+            url += "&postal_code=" + postalCode;
+        }
+
         SeatGeekEventResponse eventResponse = restTemplate.getForObject(url, SeatGeekEventResponse.class);
         if (eventResponse != null && eventResponse.getEvents() != null) {
             return eventResponse.getEvents();
@@ -27,3 +32,4 @@ public class SeatGeekEventService {
         }
     }
 }
+

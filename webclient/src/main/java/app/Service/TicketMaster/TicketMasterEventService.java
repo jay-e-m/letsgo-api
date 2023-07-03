@@ -18,8 +18,13 @@ public class TicketMasterEventService {
     }
 
 
-    public List<TicketMasterEvent> getEvents() {
+    public List<TicketMasterEvent> getEvents(String postalCode) {
         String url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=ihrEJGVbWZWb4UeA6lbZ6Ax3ELRkkyGV&size=100";
+
+        if (postalCode != null && !postalCode.isEmpty()) {
+            url += "&postalCode=" + postalCode;
+        }
+
         TicketMasterEventResponse eventResponse = restTemplate.getForObject(url, TicketMasterEventResponse.class);
         if (eventResponse != null && eventResponse.get_embedded() != null) {
             List<TicketMasterEvent> events = eventResponse.get_embedded().getEvents();
